@@ -20,11 +20,13 @@ function App() {
   }, []);
   return (
     <>
-      <div className="min-h-screen w-full bg-black text-white">hellow</div>
-      <div className="bg-red-600 min-h-screen w-full flex justify-cente items-center">
-         red
+      <div className="min-h-screen w-full bg-black text-white flex justify-center items-center">
+        hellow
       </div>
-      <div className="bg-blue-600 min-h-screen w-full flex justify-cente items-center text-white">
+      <div className="bg-red-600 min-h-screen w-full flex justify-center items-center">
+        red
+      </div>
+      <div className="bg-blue-600 min-h-screen w-full flex justify-center items-center text-white">
         blue
       </div>
     </>
