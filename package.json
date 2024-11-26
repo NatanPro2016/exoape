@@ -12,8 +12,10 @@
   "dependencies": {
     "framer-motion": "^11.11.9",
     "lenis": "^1.1.14",
+    "motion": "^11.11.17",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",

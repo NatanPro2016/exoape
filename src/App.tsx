@@ -1,14 +1,20 @@
 import Lenis from "lenis";
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
+import Hero from "./components/Hero";
+import Nav from "./components/Nav";
+import Work from "./components/Work";
+import WorkMotion from "./components/WorkMotion";
+import Gallary from "./components/Gallary";
+import Spread from "./components/Spread";
+import Footer from "./components/Footer";
+import { motion, AnimatePresence } from "framer-motion";
+import { PageTranstionContext } from "./context/PageTranstion";
 
 function App() {
+  const menuOpend = useContext(PageTranstionContext);
+
   useEffect(() => {
     const lenis = new Lenis();
-
-    // Listen for the scroll event and log the event data
-    lenis.on("scroll", (e) => {
-      console.log(e);
-    });
 
     // Use requestAnimationFrame to continuously update the scroll
     function raf(time: number) {
@@ -20,7 +26,26 @@ function App() {
   }, []);
   return (
     <>
-      
+      <Nav />
+
+      <AnimatePresence>
+        {menuOpend?.menuOpend && (
+          <motion.div
+            transition={{ duration: 0.8 }}
+            exit={{ scale: 1.2 }}
+            initial={{ scale: 1.2 }}
+            animate={{ scale: 1 }}
+            className="origin-bottom-left h-screen w-full"
+          >
+            <Hero />
+            <Work />
+            <WorkMotion />
+            <Gallary />
+            <Spread />
+            <Footer />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
