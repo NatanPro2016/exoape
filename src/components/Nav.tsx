@@ -6,7 +6,10 @@ import { PageTranstionContext } from "../context/PageTranstion";
 const Nav = ({ color }: { color?: string }) => {
   const menuOpend = useContext(PageTranstionContext);
 
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [settingVisible, setSettingVisible] = useState(
+    window.innerWidth <= 750
+  );
   const [navColor, setNavColor] = useState("#fff");
   const [isHover, setIsHover] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
@@ -23,7 +26,9 @@ const Nav = ({ color }: { color?: string }) => {
       setIsMobile(true);
       setNavColor("#fff");
     } else {
-      setIsMobile(window.scrollY >= 20);
+      if (window.innerWidth >= 750) {
+        setIsMobile(window.scrollY >= 20);
+      }
 
       if (window.scrollY <= window.innerHeight * 2.3) {
         setNavColor("#fff");
@@ -38,16 +43,24 @@ const Nav = ({ color }: { color?: string }) => {
       }
     }
   };
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 750);
+    setSettingVisible(window.innerWidth <= 750);
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [navOpen]);
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className={`fixed flex w-full items-start z-50 top-0 right-0`}>
       <nav
-        className={`flex absolute top-0 w-full mx-auto px-[3.5vw] py-[0.3vw] justify-between items-center z-50 text-${
+        className={`flex absolute top-0 w-full mx-auto md:px-[3.5vw] md:py-[0.3vw]  px-[8vw] py-[10vw] justify-between items-center z-50 text-${
           color ?? "white"
         }`}
       >
@@ -57,7 +70,7 @@ const Nav = ({ color }: { color?: string }) => {
               viewBox="0 0 64 66"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="w-[3vw] transition-all duration-300"
+              className="md:w-[3vw] w-[12vw] transition-all duration-300"
             >
               <g clipPath="url(#clip0_187_6)">
                 <path
@@ -96,13 +109,13 @@ const Nav = ({ color }: { color?: string }) => {
             onClick={handleOpen}
           >
             <p
-              className={`text-[0.9vw] transition-all duration-300`}
+              className={`md:text-[0.9vw] text-[3.7vw] transition-all duration-300`}
               style={{ color: navColor }}
             >
               {navOpen ? "Close" : "Menu"}
             </p>
             <motion.svg
-              className={`w-[1.4vw] origin-center transition-all duration-300 ${
+              className={`md:w-[1.4vw] w-[3.4vw] origin-center transition-all duration-300 ${
                 isHover && "rotate-90"
               }`}
               viewBox="0 0 31 18"
@@ -122,14 +135,15 @@ const Nav = ({ color }: { color?: string }) => {
         ) : (
           <ul className="flex gap-[3vw] text-[0.9vw] p-[3vw] pr-0">
             <li>
+              <a href="/"> Home</a>
+            </li>
+            <li>
               <a href="/works"> Work</a>
             </li>
             <li>
               <a href="/studio"> Studio</a>
             </li>
-            <li>
-              <a href="/news"> News</a>
-            </li>
+
             <li>
               <a href="/contact"> Contanct</a>
             </li>
@@ -147,110 +161,109 @@ const Nav = ({ color }: { color?: string }) => {
             initial={{ height: 0, scale: 1.2 }}
             animate={{ scale: 1, height: "100vh" }}
           >
-            <div className="overflow-hidden w-[21vw] h-[70vh]">
-              <AnimatePresence>
-                {number === 1 && (
-                  <motion.img
-                    src="./images/black-women.webp"
-                    alt=""
-                    className="w-[21vw] h-[70vh] object-cover"
-                    transition={{ ease: "easeIn", duration: 0.8 }}
-                    initial={{ rotate: "20deg", scale: 1.2 }}
-                    animate={{ rotate: "0deg", scale: 1 }}
-                  />
-                )}
-              </AnimatePresence>
-              <AnimatePresence>
-                {number === 2 && (
-                  <motion.img
-                    src="./images/computer.webp"
-                    alt=""
-                    className="w-[21vw] h-[70vh] object-cover "
-                    transition={{ ease: "easeIn", duration: 0.5 }}
-                    initial={{ rotate: "20deg", scale: 1.2 }}
-                    animate={{ rotate: "0deg", scale: 1 }}
-                  />
-                )}
-              </AnimatePresence>
-              <AnimatePresence>
-                {number === 3 && (
-                  <motion.img
-                    src="./images/awwwards annual nominee.webp"
-                    alt=""
-                    className="w-[21vw] h-[70vh] object-cover"
-                    transition={{ ease: "easeIn", duration: 0.8 }}
-                    initial={{ rotate: "20deg", scale: 1.2 }}
-                    animate={{ rotate: "0deg", scale: 1 }}
-                  />
-                )}
-              </AnimatePresence>
-              <AnimatePresence>
-                {number === 4 && (
-                  <motion.img
-                    src="./images/man-using-computer.webp"
-                    alt=""
-                    className="w-[21vw] h-[70vh] object-cover"
-                    transition={{ ease: "easeIn", duration: 0.8 }}
-                    initial={{ rotate: "20deg", scale: 1.2 }}
-                    animate={{ rotate: "0deg", scale: 1 }}
-                  />
-                )}
-              </AnimatePresence>
-            </div>
+            {!settingVisible && (
+              <div className="overflow-hidden w-[21vw] h-[70vh]">
+                <AnimatePresence>
+                  {number === 1 && (
+                    <motion.img
+                      src="./images/black-women.webp"
+                      alt=""
+                      className="w-[21vw] h-[70vh] object-cover"
+                      transition={{ ease: "easeIn", duration: 0.8 }}
+                      initial={{ rotate: "20deg", scale: 1.2 }}
+                      animate={{ rotate: "0deg", scale: 1 }}
+                    />
+                  )}
+                </AnimatePresence>
+                <AnimatePresence>
+                  {number === 2 && (
+                    <motion.img
+                      src="./images/computer.webp"
+                      alt=""
+                      className="w-[21vw] h-[70vh] object-cover "
+                      transition={{ ease: "easeIn", duration: 0.5 }}
+                      initial={{ rotate: "20deg", scale: 1.2 }}
+                      animate={{ rotate: "0deg", scale: 1 }}
+                    />
+                  )}
+                </AnimatePresence>
+                <AnimatePresence>
+                  {number === 3 && (
+                    <motion.img
+                      src="./images/awwwards annual nominee.webp"
+                      alt=""
+                      className="w-[21vw] h-[70vh] object-cover"
+                      transition={{ ease: "easeIn", duration: 0.8 }}
+                      initial={{ rotate: "20deg", scale: 1.2 }}
+                      animate={{ rotate: "0deg", scale: 1 }}
+                    />
+                  )}
+                </AnimatePresence>
+                <AnimatePresence>
+                  {number === 4 && (
+                    <motion.img
+                      src="./images/man-using-computer.webp"
+                      alt=""
+                      className="w-[21vw] h-[70vh] object-cover"
+                      transition={{ ease: "easeIn", duration: 0.8 }}
+                      initial={{ rotate: "20deg", scale: 1.2 }}
+                      animate={{ rotate: "0deg", scale: 1 }}
+                    />
+                  )}
+                </AnimatePresence>
+              </div>
+            )}
 
-            <div className="flex flex-col text-sand-4">
+            <div className="flex flex-col text-sand-4 md:text-[3.6vw] text-[16vw]">
               <a
-                href="/works"
-                className="flex overflow-hidden h-[4.7vw] cursor-pointer"
-                onMouseEnter={() => setNumber(1)}
-              >
-                <UpAnimtion
-                  content="Work"
-                  className="text-[3.6vw] hover-line"
-                />
-              </a>
-              <a
-                href="/studio"
-                className="flex overflow-hidden h-[4.7vw]"
-                onMouseEnter={() => setNumber(2)}
-              >
-                <UpAnimtion
-                  content="Studio"
-                  className="text-[3.6vw] hover-line"
-                />
-              </a>
-              <a
-                className="flex overflow-hidden h-[4.7vw] "
+                href="/"
+                className="flex overflow-hidden h-[18vw] md:h-[5vw] "
                 onMouseEnter={() => setNumber(3)}
               >
                 <UpAnimtion
-                  content="News"
-                  className="text-[3.6vw] hover-line"
+                  content="Home"
+                  className="md:text-[3.6vw] text-[16vw] hover-line"
                 />
               </a>
               <a
+                href="/works"
+                className="flex overflow-hidden h-[18vw] cursor-pointer md:h-[5vw]"
+                onMouseEnter={() => setNumber(1)}
+              >
+                <UpAnimtion content="Work" className=" hover-line" />
+              </a>
+              <a
+                href="/studio"
+                className="flex overflow-hidden h-[18vw] md:h-[5vw]"
+                onMouseEnter={() => setNumber(2)}
+              >
+                <UpAnimtion content="Studio" className=" hover-line" />
+              </a>
+              <a
                 href="/contact"
-                className="flex overflow-hidden h-[4.7vw] hover-line"
+                className="flex overflow-hidden h-[18vw] hover-line md:h-[5vw]"
                 onMouseEnter={() => setNumber(4)}
               >
-                <UpAnimtion content="Contact" className="text-[3.6vw]" />
+                <UpAnimtion content="Contact" className="hover-line" />
               </a>
-              <ul className="flex flex-col mt-[2vw] text-sand-6 text-[1.2vw]">
-                <li>
-                  <a href="#" className="">
-                    Behance
-                  </a>
-                </li>
-                <li>
-                  <a href="#"> Dribbble</a>
-                </li>
-                <li>
-                  <a href="#"> Twitter</a>
-                </li>
-                <li>
-                  <a href="#"> Instagram</a>
-                </li>
-              </ul>
+              {!settingVisible && (
+                <ul className="flex flex-col mt-[2vw] text-sand-6 text-[1.2vw]">
+                  <li>
+                    <a href="#" className="">
+                      Behance
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#"> Dribbble</a>
+                  </li>
+                  <li>
+                    <a href="#"> Twitter</a>
+                  </li>
+                  <li>
+                    <a href="#"> Instagram</a>
+                  </li>
+                </ul>
+              )}
             </div>
           </motion.div>
         )}

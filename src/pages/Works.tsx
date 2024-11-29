@@ -1,6 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
 
-import { motion, useTransform, useScroll } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useTransform,
+  useScroll,
+} from "framer-motion";
 import Project from "../components/Project";
 import Nav from "../components/Nav";
 
@@ -58,22 +63,31 @@ const works = [
 
 const Works = () => {
   return (
-    <div className="w-full h-[100vh] overflow-x-auto relative scroll-snap">
+    <div className="w-full h-[100vh] overflow-x-hidden relative scroll-snap">
       <Nav />
-
-      {works.map((work) => {
-        return (
-          <div className="flex flex-col h-screen w-screen">
-            <Project
-              key={work.id}
-              title={work.title}
-              des={work.title}
-              image={work.image}
-              background={work.background}
-            />
-          </div>
-        );
-      })}
+      <AnimatePresence>
+        <motion.div
+          transition={{ duration: 0.8 }}
+          exit={{ scale: 1.2 }}
+          initial={{ scale: 1.2 }}
+          animate={{ scale: 1 }}
+          className="origin-bottom-left h-screen w-full"
+        >
+          {works.map((work) => {
+            return (
+              <div className="flex flex-col h-screen w-screen">
+                <Project
+                  key={work.id}
+                  title={work.title}
+                  des={work.title}
+                  image={work.image}
+                  background={work.background}
+                />
+              </div>
+            );
+          })}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 };

@@ -11,19 +11,29 @@ const Hero = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHover, setIsHover] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 750);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ["100vh", "-100vh"]);
+
+  let y = useTransform(scrollYProgress, [0, 1], ["100vh", "-100vh"]);
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
     setPosition({ x: e.pageX, y: e.pageY });
   };
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 750);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div
       ref={ref}
-      className="relative h-[130vw] overflow-hidden"
+      className="relative md:h-[130vw] h-[250vh] overflow-hidden"
       onMouseMove={handleMove}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
@@ -39,13 +49,23 @@ const Hero = () => {
           </motion.span>
         )}
       </AnimatePresence>
-      <div className="relative">
-        <motion.img
-          src="/images/Venice Grand Canal.webp"
-          alt=""
-          className="absolute  w-screen"
-        />
-      </div>
+      {isMobile ? (
+        <div className="relative w-full h-[250vh]">
+          <motion.img
+            src="/images/Venice Grand Canal.webp"
+            alt=""
+            className="fixed w-screen h-screen top-0 left-0 object-cover"
+          />
+        </div>
+      ) : (
+        <div className="absolute">
+          <motion.img
+            src="/images/Venice Grand Canal.webp"
+            alt=""
+            className=" w-screen"
+          />
+        </div>
+      )}
       <motion.div className="px-[7vw] relative" style={{ y }}>
         <div className="text-white font-Lausanne  text-[1.6666vw] relative">
           <motion.div>Global digital design studio partnering with</motion.div>

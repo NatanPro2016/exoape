@@ -9,18 +9,18 @@ const Spread = () => {
   });
   const y = useTransform(scrollYProgress, [0, 1], ["90vw", "-20vw"]);
   return (
-    <div className="relative min-h-screen z-10">
+    <div className="relative md:min-h-screen z-10 mb-[8vh]">
       <motion.div
         className="flex flex-col relatve items-center py-[10vw] bg-white"
         style={{ y }}
       >
-        <span className="flex gap-1 w-fit h-[1vh] items-center text-[0.996vw]">
+        <span className="flex gap-1 w-fit h-[1vh] items-center md:text-[0.996vw] text-[1.8vw]">
           <svg
             data-v-669b4a84=""
             viewBox="0 0 12 12"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="icon w-[0.9vw]"
+            className="icon md:w-[0.9vw] w-[1.8vw]"
           >
             <path
               data-v-669b4a84=""
@@ -30,17 +30,17 @@ const Spread = () => {
           </svg>
           Featured Projects
         </span>
-        <div className="flex pt-[5vh] text-[10vw] font-Lausanne relative capitalize w-full overflow-hidden justify-center ">
-          <h1 className="max-w-[50vw] text-center lines leading-[10vw]">
+        <div className="flex pt-[5vh] md:text-[10vw] text-[20vw] font-Lausanne relative capitalize w-full overflow-hidden justify-center ">
+          <h1 className="md:max-w-[50vw] text-center lines md:leading-[10vw] leading-[20vw]">
             Spread the News
           </h1>
         </div>
-        <p className="text-[1.4vw] w-[31vw] text-center mt-[3vw]">
+        <p className="md:text-[1.4vw] text-[2.4vw] md:w-[31vw] text-center md:mt-[3vw] mt-[6vw] w-[51vw]">
           Find out more about our work on these leading design and technology
           platforms.
         </p>
-        <div className="flex justify-center end mt-[2vh] text-[1.2vw]">
-          <a href="#"> Browse all Work </a>
+        <div className="flex justify-center end md:mt-[2vh] mt-[4vw] md:text-[1.2vw] text-[3vw]">
+          <a href="/works"> Browse all Work </a>
         </div>
       </motion.div>
     </div>

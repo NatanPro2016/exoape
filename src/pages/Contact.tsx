@@ -1,10 +1,19 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import Nav from "../components/Nav";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import Footer from "../components/Footer";
 import Lenis from "lenis";
+import { PageTranstionContext } from "../context/PageTranstion";
+import useIsMobile from "../hook/useIsMobile";
 
 const Contact = () => {
+  const isMobile = useIsMobile();
+
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -22,57 +31,109 @@ const Contact = () => {
     offset: ["end start", "end end"],
   });
   const y = useTransform(scrollYProgress, [0, 1], ["0vh", "30vw"]);
+  const menuOpend = useContext(PageTranstionContext);
 
   return (
-    
-    <div className="bg-white h-screen text-[0.97vw]" ref={ref}>
+    <div className="bg-white h-screen md:text-[0.97vw] text-[3.7vw] " ref={ref}>
       <Nav color="black" />
-      <motion.div className="flex h-full max-h-screen items-end px-[10vw] pb-[2.8vw] relative z-20 bg-white">
-        <div className="flex w-screen overflow-hidden absolute top-[7vw] left-0 z-0">
-          <motion.div className="text-[10vw] flex flex-nowrap animate gap-[2vw] whitespace-nowrap">
-            <p className="w-fit inline-block ">
-              Get in touch · 保持联系 · Ponerse en contacto · Neem contact op ·
-            </p>
-            <p className="w-fit inline-block">
-              Get in touch · 保持联系 · Ponerse en contacto · Neem contact op ·
-            </p>
+      <AnimatePresence>
+        {menuOpend?.menuOpend && (
+          <motion.div
+            transition={{ duration: 0.8 }}
+            exit={{ scale: 1.2 }}
+            initial={{ scale: 1.2, marginTop: "10vw" }}
+            animate={{ scale: 1, marginTop: "0vw" }}
+            className="origin-left"
+          >
+            <motion.div className="flex flex-col md:flex-row min-h-screen md:items-end px-[10vw] pb-[2.8vw] relative z-20 bg-white md:pt-0 pt-[14vw] ">
+              <div className="flex w-screen overflow-hidden absolute top-[7vw] left-0 z-0">
+                <div className="md:text-[10vw] text-[26vw] flex flex-nowrap animate gap-[2vw] whitespace-nowrap md:mt-[2vw] mt-[24vw]">
+                  <p className="w-fit inline-block ">
+                    Get in touch · 保持联系 · Ponerse en contacto · Neem contact
+                    op ·
+                  </p>
+                  <p className="w-fit inline-block">
+                    Get in touch · 保持联系 · Ponerse en contacto · Neem contact
+                    op ·
+                  </p>
+                </div>
+              </div>
+              {!isMobile && (
+                <div className="flex flex-col w-full relative z-30">
+                  <p className="pb-[5vw]">
+                    Ready for lift-off Pin, tween message or poke -- and we get
+                    back as soon as possible
+                  </p>
+                  <ul className="md:text-[1.1vw] text-[3.6vw]">
+                    <li>
+                      <a href="#" className="flex line w-fit mb-[2vw]">
+                        hello@exoape.com
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" className="flex line w-fit">
+                        +41772086200
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              )}
+
+              <img
+                src="/images/contact.webp"
+                alt=""
+                className="md:w-[26vw] md:h-[39vw] md:ml-[12vw] w-[80vw] relative z-10"
+              />
+
+              {isMobile && (
+                <div className="flex flex-col w-full relative z-30 mt-[8vw]">
+                  <p className="pb-[5vw] text-[6.4vw] w-[90%]">
+                    Ready for lift-off Pin, tween message or poke -- and we get
+                    back as soon as possible
+                  </p>
+                  <ul className="text-[3.6vw]">
+                    <li>
+                      <a
+                        href="#"
+                        className="flex line w-fit  mb-[4.6vw] h-[7vw]"
+                      >
+                        hello@exoape.com
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" className="flex line w-fit h-[7vw]">
+                        +41772086200
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              )}
+              <div className="flex flex-col justify-start md:ml-[10vw] md:mb-0 mb-[21vw] ">
+                <a
+                  href="#"
+                  className="md:w-[9vw] w-[34vw] md:mb-[2vw] mt-[10vw] mb-[5.6vw]"
+                >
+                  Willem ll Singel 8 6041 , Roernond The netherlands
+                </a>
+                <a
+                  href="#"
+                  className="text-[4.2]vw line w-fit md:h-fit h-[7vw] "
+                >
+                  View on Maps
+                </a>
+              </div>
+            </motion.div>
+            <motion.div className="h-[200vh] md:mt-[-100vh] mt-[-50vh] z-10 relative md:block flex items-end">
+              <motion.div
+                className="sticky top-0 bottom-0 left-0"
+                style={{ y }}
+              >
+                <Footer />
+              </motion.div>
+            </motion.div>
           </motion.div>
-        </div>
-        <div className="flex flex-col w-[22vw] relative z-30">
-          <p className="pb-[5vw]">
-            Ready for lift-off Pin, tween message or poke -- and we get back as
-            soon as possible
-          </p>
-          <ul className="text-[1.1vw]">
-            <li>
-              <a href="#" className="flex">
-                hello@exoape.com
-              </a>
-            </li>
-            <li>
-              <a href="#" className="flex">
-                +41772086200
-              </a>
-            </li>
-          </ul>
-        </div>
-        <img
-          src="/images/contact.webp"
-          alt=""
-          className="w-[26vw] h-[39vw] ml-[12vw] relative z-10"
-        />
-        <div className="flex flex-col ml-[10vw]">
-          <a href="#" className="w-[9vw] mb-[2vw]">
-            Willem ll Singel 8 6041 , Roernond The netherlands
-          </a>
-          <a href="#"> View on Maps</a>
-        </div>
-      </motion.div>
-      <motion.div className="h-[230vh] mt-[-100vh] z-10 relative">
-        <motion.div className="sticky top-0 bottom-0 left-0" style={{ y }}>
-          <Footer />
-        </motion.div>
-      </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
