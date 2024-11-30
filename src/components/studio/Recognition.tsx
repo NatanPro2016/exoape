@@ -58,7 +58,7 @@ const Recognition = () => {
                 <a href="https://www.cssdesignawards.com/">CSSDA</a>
               </li>
             </ul>
-            <ul className="flex flex-col ms:text-[1.5vw] text-[4.8vw] gap-[0.6vw]">
+            <ul className="flex flex-col md:text-[1.5vw] text-[4.8vw] gap-[0.6vw]">
               <li className="flex justify-between md:w-[12vw] w-full">
                 <p> Awwwards</p> <p> x28</p>
               </li>
@@ -82,8 +82,8 @@ const Recognition = () => {
           </div>
         </div>
       </div>
-      <motion.div className="md:h-[270vh] h-[vh] mt-[-100vh] z-10 relative flex items-end ">
-        <motion.div className="sticky top-0 bottom-0 left-0" style={{ y }}>
+      <motion.div className="md:h-[270vh] h-[220vw] mt-[-80vw] z-10 relative flex items-end ">
+        <motion.div className="sticky top-0 bottom-0 left-0" style={{y}}>
           <Footer />
         </motion.div>
       </motion.div>
