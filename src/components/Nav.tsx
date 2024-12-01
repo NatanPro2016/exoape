@@ -65,7 +65,7 @@ const Nav = ({ color }: { color?: string }) => {
         }`}
       >
         <a href="/" className="logo text-[2vw]">
-          {isMobile ? (
+          {isMobile || settingVisible ? (
             <svg
               viewBox="0 0 64 66"
               fill="none"
@@ -101,7 +101,7 @@ const Nav = ({ color }: { color?: string }) => {
             </>
           )}
         </a>
-        {isMobile ? (
+        {isMobile || settingVisible ? (
           <div
             className={`flex gap-[0.7vw] p-[3vw] pr-0 cursor-pointer text-[${navColor}]`}
             onMouseEnter={() => setIsHover(true)}

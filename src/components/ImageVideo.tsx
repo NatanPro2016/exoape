@@ -1,5 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import useIsMobile from "../hook/useIsMobile";
 
 interface pro {
   image: string;
@@ -8,6 +9,7 @@ interface pro {
   description: string;
 }
 const ImageVideo = ({ image, video, title, description }: pro) => {
+  const isMobile = useIsMobile();
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHover, setIsHover] = useState(false);
   const handlehover = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -18,9 +20,12 @@ const ImageVideo = ({ image, video, title, description }: pro) => {
     });
   };
   const video_ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    isMobile ? video_ref?.current?.play() : video_ref?.current?.pause();
+  }, [isHover]);
   return (
     <div
-      className="flex flex-col relative w-full cursor-pointer"
+      className="flex flex-col relative w-full cursor-pointer mt-[12vw] md:mt-0"
       onMouseMove={(e) => handlehover(e)}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
@@ -40,7 +45,9 @@ const ImageVideo = ({ image, video, title, description }: pro) => {
       <img
         src={image}
         alt=""
-        className="w-full flex items-center justify-center hover:opacity-0"
+        className={`w-full flex items-center justify-center hover:opacity-0 ${
+          isMobile && "opacity-0"
+        }`}
         onMouseEnter={() => video_ref?.current?.play()}
         onMouseLeave={() => video_ref?.current?.pause()}
       />
@@ -53,11 +60,11 @@ const ImageVideo = ({ image, video, title, description }: pro) => {
       ></video>
 
       <p
-        className={`text-[0.9vw] mt-[0.5vw] tracking-[0.007vw] ${
-          isHover ? "opacity-100" : "opacity-0"
+        className={`md:text-[0.9vw] text-[3.6vw] md:mt-[0.5vw] tracking-[0.007vw] mt-[3vw] ${
+          isHover || isMobile ? "opacity-80" : "opacity-0"
         }`}
       >
-        <strong>{title} - &nbsp; </strong> {description}
+        <strong>{title} - &nbsp; </strong> {isMobile && <br />} {description}
       </p>
     </div>
   );

@@ -14,10 +14,10 @@ const Hero = () => {
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 750);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"],
+    offset: ["start start", "end start"],
   });
 
-  let y = useTransform(scrollYProgress, [0, 1], ["100vh", "-100vh"]);
+  let y = useTransform(scrollYProgress, [0, 1], ["30vh", "-100vh"]);
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
     setPosition({ x: e.pageX, y: e.pageY });
   };
@@ -33,7 +33,7 @@ const Hero = () => {
   return (
     <div
       ref={ref}
-      className="relative md:h-[130vw] h-[250vh] overflow-hidden"
+      className="relative md:h-[130vw] md:overflow-hidden"
       onMouseMove={handleMove}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
@@ -50,11 +50,11 @@ const Hero = () => {
         )}
       </AnimatePresence>
       {isMobile ? (
-        <div className="relative w-full h-[250vh]">
+        <div className="realtive h-[200vh]">
           <motion.img
             src="/images/Venice Grand Canal.webp"
             alt=""
-            className="fixed w-screen h-screen top-0 left-0 object-cover"
+            className="h-screen w-screen  object-center sticky top-0"
           />
         </div>
       ) : (

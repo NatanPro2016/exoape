@@ -82,8 +82,8 @@ const Recognition = () => {
           </div>
         </div>
       </div>
-      <motion.div className="md:h-[270vh] h-[220vw] mt-[-80vw] z-10 relative flex items-end ">
-        <motion.div className="sticky top-0 bottom-0 left-0" style={{y}}>
+      <motion.div className="z-10 relative mt-[-50vw] h-[110vw] flex items-start">
+        <motion.div className="sticky top-0 left-0 min-h-screen" style={{y}}>
           <Footer />
         </motion.div>
       </motion.div>

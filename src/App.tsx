@@ -32,10 +32,10 @@ function App() {
         {menuOpend?.menuOpend && (
           <motion.div
             transition={{ duration: 0.8 }}
-            exit={{ scale: 1.5}}
-            initial={{ scale: 1.5 , height:'0vh' }}
-            animate={{ scale: 1 , height: '100vh' }}
-            className="origin-center-right h-screen w-full"
+            exit={{ scale: 1.1, height: "0vh", marginTop: "100vh" }}
+            initial={{ scale: 1.5, height: "0vh", marginTop: "100vh" }}
+            animate={{ scale: 1, height: "100vh", marginTop: "0" }}
+            className="origin-center-right pointer-events-none w-full"
           >
             <Hero />
             <Work />

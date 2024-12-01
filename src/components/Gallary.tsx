@@ -23,7 +23,7 @@ const Gallary = () => {
 
   return (
     <div
-      className="md:min-h-[120vh] relative flex items-center justify-center"
+      className="md:min-h-[120vh] relative flex items-center justify-center bg-white"
       ref={ref}
     >
       <img

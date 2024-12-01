@@ -14,7 +14,7 @@ const WorkMotion = () => {
   return (
     <div
       ref={ref}
-      className="w-full h-[300vh] relative bg-black text-white md:mt-[20vh] mt-[4vw] text-center flex flex-col items-center"
+      className="w-full h-[300vh] relative bg-dark-blue text-white md:mt-[20vh] mt-[4vw] text-center flex flex-col items-center"
     >
       <div className="flex flex-col items-center justify-between w-full text-center h-screen sticky top-0 md:p-[10vh] p-[10vw] pt-[16vw] ">
         <div className="flex h-full items-center justify-center w-full absolute top-0 left-0">
