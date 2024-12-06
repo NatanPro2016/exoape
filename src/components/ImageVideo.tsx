@@ -7,12 +7,13 @@ interface pro {
   video: string;
   title: string;
   description: string;
+  link: string;
 }
-const ImageVideo = ({ image, video, title, description }: pro) => {
+const ImageVideo = ({ image, video, title, description, link }: pro) => {
   const isMobile = useIsMobile();
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHover, setIsHover] = useState(false);
-  const handlehover = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handlehover = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     setPosition({
       x: e.clientX - rect.left,
@@ -24,7 +25,8 @@ const ImageVideo = ({ image, video, title, description }: pro) => {
     isMobile ? video_ref?.current?.play() : video_ref?.current?.pause();
   }, [isHover]);
   return (
-    <div
+    <a
+      href={link}
       className="flex flex-col relative w-full cursor-pointer mt-[12vw] md:mt-0"
       onMouseMove={(e) => handlehover(e)}
       onMouseEnter={() => setIsHover(true)}
@@ -66,7 +68,7 @@ const ImageVideo = ({ image, video, title, description }: pro) => {
       >
         <strong>{title} - &nbsp; </strong> {isMobile && <br />} {description}
       </p>
-    </div>
+    </a>
   );
 };
 

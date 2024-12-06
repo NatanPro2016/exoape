@@ -15,7 +15,6 @@ const PageTranstion = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     window.scrollBy({ top: scrollPos });
-    console.log(scrollPos);
   }, [scrollPos, menuOpend]);
 
   return (

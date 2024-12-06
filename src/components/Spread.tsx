@@ -9,7 +9,7 @@ const Spread = () => {
   });
   const y = useTransform(scrollYProgress, [0, 1], ["90vw", "-20vw"]);
   return (
-    <div className="relative md:min-h-screen z-10 mb-[8vh]">
+    <div className="relative md:min-h-screen z-10 mb-[8vh] spread">
       <motion.div
         className="flex flex-col relatve items-center py-[10vw] bg-white"
         style={{ y }}

@@ -9,15 +9,13 @@ import WhatWeBelieve from "../components/studio/WhatWeBelieve";
 import TheApe from "../components/studio/TheApe";
 import Recognition from "../components/studio/Recognition";
 import { PageTranstionContext } from "../context/PageTranstion";
+import Loader from "../components/Loader";
 
 const Studio = () => {
   const menuOpend = useContext(PageTranstionContext);
-  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 750);
 
   useEffect(() => {
     const lenis = new Lenis();
-
-    // Use requestAnimationFrame to continuously update the scroll
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -25,35 +23,59 @@ const Studio = () => {
 
     requestAnimationFrame(raf);
   }, []);
-  const handleResize = () => {
-    setIsMobile(window.innerWidth <= 750);
-  };
+
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const handleImagesLoad = () => {
+      const images = Array.from(document.images);
+
+      const imageLoadPromises = images.map((image) => {
+        if (image.complete) return Promise.resolve();
+        return new Promise<void>((resolve) => {
+          image.onload = () => resolve();
+        });
+      });
+
+      const minimumTimePromise = new Promise<void>((resolve) => {
+        setTimeout(resolve, 1000);
+      });
+
+      Promise.all([Promise.all(imageLoadPromises), minimumTimePromise]).then(
+        () => {
+          setLoading(false);
+        }
+      );
+    };
+
+    handleImagesLoad();
   }, []);
   return (
     <>
-      <Nav />
-      <AnimatePresence>
-        {menuOpend?.menuOpend && (
-          <motion.div
-            className="bg-white h-screen w-full origin-bottom-left"
-            transition={{ duration: 0.8 }}
-            exit={{ scale: 1.2 }}
-            initial={{ scale: 1.2 }}
-            animate={{ scale: 1 }}
-          >
-            <Hero />
-            <Partners />
-            <How />
-            <WhatWeBelieve />
-            <TheApe />
-            <Recognition />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <Loader show={loading} />
+      {!loading && (
+        <>
+          <Nav />
+          <AnimatePresence>
+            {menuOpend?.menuOpend && (
+              <motion.div
+                className="bg-white h-screen w-full origin-bottom-left studio relative"
+                transition={{ duration: 0.8 }}
+                exit={{ scale: 1.2 }}
+                initial={{ scale: 1.2 }}
+                animate={{ scale: 1 }}
+              >
+                <Hero />
+                <Partners />
+                <How />
+                <WhatWeBelieve />
+                <TheApe />
+                <Recognition />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </>
+      )}
     </>
   );
 };

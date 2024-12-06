@@ -24,7 +24,7 @@ const TheApe = () => {
     ["0vw", "-30vw"]
   );
   return (
-    <div>
+    <div className="the-ape">
       <div className="flex w-full md:h-screen justify-center" ref={ref}>
         <motion.img
           style={{ width }}

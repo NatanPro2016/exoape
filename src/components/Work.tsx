@@ -13,26 +13,27 @@ const Work = () => {
 
   return (
     <motion.div
-      className=" bg-white min-h-screen relative z-30 px-[10vw] md:pl-[15vw] md:pr-[7vw] flex flex-col mt-[-80vh]"
+      className=" bg-white min-h-screen relative z-30 px-[10vw] md:pl-[15vw] md:pr-[7vw] flex flex-col mt-[-80vh] work"
       style={{ y }}
     >
       <span className="gap-1 w-fit h-[1vh] items-center text-[3.7vw] mt-[12vh] md:hidden flex">
-          <svg
-            viewBox="0 0 12 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="icon w-[3.9vw]"
-          >
-            <path
-              d="M7.41908 4.56679L6.13722 0L4.85418 4.92566L0 6L4.85418 7.25435L6.13722 12L7.3276 7.25435L12 6L7.41908 4.56679Z"
-              fill="currentColor"
-            ></path>
-          </svg>
-          Featured Projects
-        </span>
-      <h1 className="pt-[2vh] md:text-[15vw] text-[16vw] font-Lausanne">Work</h1>
+        <svg
+          viewBox="0 0 12 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="icon w-[3.9vw]"
+        >
+          <path
+            d="M7.41908 4.56679L6.13722 0L4.85418 4.92566L0 6L4.85418 7.25435L6.13722 12L7.3276 7.25435L12 6L7.41908 4.56679Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+        Featured Projects
+      </span>
+      <h1 className="pt-[2vh] md:text-[15vw] text-[16vw] font-Lausanne">
+        Work
+      </h1>
       <div className="flex md:gap-[8vw] gap-[4vw] items-start flex-col md:flex-row">
-        
         <p className="text-[4.6666vw] mt-[1vh] flex md:hidden w-full ">
           Highlights of cases that we passionately built with forward-thinking
           clients and friends over the years.
@@ -43,6 +44,7 @@ const Work = () => {
             video="/video/file-3.mp4"
             title="Amaterasu"
             description="Frontier Health invoation"
+            link="https://amaterasu.ai/"
           />
         </div>
         <div className="flex flex-col w-full md:w-[22vw]">
@@ -70,6 +72,7 @@ const Work = () => {
               video="/video/file-4.mp4"
               title="columba Pictures "
               description="celebraing century of cenima"
+              link="https://columbia100.watson.la/"
             />
           </div>
         </div>
@@ -81,6 +84,7 @@ const Work = () => {
             video="/video/file-2.mp4"
             title="camblum"
             description="camblum"
+            link="https://cambiumcarbon.com/"
           />
         </div>
         <div className="md:w-[33vw] w-full">
@@ -89,6 +93,7 @@ const Work = () => {
             video="/video/file-2.mp4"
             title="camblum"
             description="camblum"
+            link="https://studiod.nu/"
           />
         </div>
       </div>

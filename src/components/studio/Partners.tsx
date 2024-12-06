@@ -18,12 +18,12 @@ const Partners = () => {
   const img_1 = useTransform(
     scroll_1.scrollYProgress,
     [0, 1],
-    ["8vw", "-20vw"]
+    ["8vw", "-30vw"]
   );
   const img_2 = useTransform(scroll_1.scrollYProgress, [0, 1], ["0vw", "20vw"]);
 
   return (
-    <div className="bg-white pb-[15vw]">
+    <div className="bg-white pb-[15vw] h-fit partners">
       <motion.div
         className="w-full relative z-20 mt-[-20vw] px-[8vw] bg-white"
         style={{ marginTop: y }}
@@ -40,7 +40,7 @@ const Partners = () => {
           <img
             src="/images/studio/exo ape-12.webp"
             alt=""
-            className="md:h-[22.3vw] md:ml-[10vw] ml-[2vw] h-[45vw]"
+            className="md:h-[22.3vw] md:ml-[10vw] ml-[2vw] h-[45vw] mt-[5vw]"
           />
           <motion.img
             src="/images/studio/exo ape-13.webp"
@@ -50,7 +50,7 @@ const Partners = () => {
           />
         </div>
       </motion.div>
-      <div className="flex flex-col md:flex-row  md:items-center md:mt-[-10vw] pt-[40vw] px-[8vw] md:gap-[9vw] relative z-10 bg-white mt-[8vw]">
+      <div className="flex flex-col md:flex-row  md:items-center md:mt-[-10vw] pt-[40vw] px-[8vw] pb-[18vw] md:gap-[9vw] relative z-10 bg-white">
         <span className="flex gap-1 items-center md:text-[0.996vw] text-[3.6vw] ">
           <svg
             data-v-669b4a84=""

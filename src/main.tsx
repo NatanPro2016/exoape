@@ -1,14 +1,13 @@
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
+import App from "./App";
 import "./index.css";
-import PageTranstion from "./context/PageTranstion.tsx";
+import PageTranstion from "./context/PageTranstion";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Works from "./pages/Works.tsx";
-import WorksFix from "./pages/WorksFix.tsx";
-import Contact from "./pages/Contact.tsx";
-import FullPageScroll from "./pages/FullPageScroll.tsx";
-import Studio from "./pages/Studio.tsx";
+import Works from "./pages/Works";
+import Contact from "./pages/Contact";
+import FullPageScroll from "./pages/FullPageScroll";
+import Studio from "./pages/Studio";
 
 const router = createBrowserRouter([
   {

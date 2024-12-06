@@ -11,9 +11,9 @@ const Recognition = () => {
   });
   const y = useTransform(scrollYProgress, [0, 1], ["0vh", "30vw"]);
   return (
-    <div className="flex flex-col relative">
+    <div className="flex flex-col relative ">
       <div
-        className="flex md:flex-row flex-col px-[4vw] min-h-screen md:items-center md:gap-[15vw]  py-[13vw] z-20 relative bg-white"
+        className="flex md:flex-row flex-col px-[4vw] md:items-center md:gap-[15vw]  py-[13vw] z-20 relative bg-white recognition"
         ref={ref}
       >
         <span className="flex gap-1 items-center md:text-[0.996vw] text-[3.6vw] mb-[5vw]">
@@ -82,8 +82,9 @@ const Recognition = () => {
           </div>
         </div>
       </div>
-      <motion.div className="z-10 relative mt-[-50vw] h-[110vw] flex items-start">
-        <motion.div className="sticky top-0 left-0 min-h-screen" style={{y}}>
+
+      <motion.div className="md:h-[200vh] h-[100vh] md:mt-[-100vh] mt-[-50vh] z-10 relative md:block flex items-end">
+        <motion.div className="sticky top-0 bottom-0 left-0" style={{ y }}>
           <Footer />
         </motion.div>
       </motion.div>

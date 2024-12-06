@@ -5,7 +5,7 @@ import useIsMobile from "../../hook/useIsMobile";
 const WhatWeBelieve = () => {
   const isMobile = useIsMobile();
   return (
-    <div className="flex md:flex-row flex-col w-full px-[8vw] py-[12vw] md:items-end">
+    <div className="flex md:flex-row flex-col w-full px-[8vw] py-[12vw] md:items-end what-we-believe">
       <span className="flex gap-[0.8vw] items-center md:text-[0.996vw] text-[3.6vw] md:mb-[18vw]">
         <svg
           viewBox="0 0 12 12"

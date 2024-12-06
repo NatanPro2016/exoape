@@ -5,7 +5,6 @@ import { PageTranstionContext } from "../context/PageTranstion";
 
 const Nav = ({ color }: { color?: string }) => {
   const menuOpend = useContext(PageTranstionContext);
-
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [settingVisible, setSettingVisible] = useState(
     window.innerWidth <= 750
@@ -14,6 +13,7 @@ const Nav = ({ color }: { color?: string }) => {
   const [isHover, setIsHover] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const [number, setNumber] = useState(1);
+
   const handleOpen = () => {
     setNavOpen(!navOpen);
     menuOpend?.setMenuOpend(!menuOpend.menuOpend);
@@ -21,28 +21,118 @@ const Nav = ({ color }: { color?: string }) => {
       menuOpend?.setscrollPos(window.scrollY);
     }
   };
-  const handleScroll = () => {
-    if (navOpen) {
-      setIsMobile(true);
-      setNavColor("#fff");
-    } else {
-      if (window.innerWidth >= 750) {
-        setIsMobile(window.scrollY >= 20);
-      }
 
-      if (window.scrollY <= window.innerHeight * 2.3) {
+  const handleScroll = () => {
+    // sections have are different backgrounds so the navgation color had to change opposite color to background
+
+    // height are different in different pages the navgation bar color changes
+    if (window.location.pathname === "/") {
+      const hero = document.querySelector(".hero");
+      const work = document.querySelector(".work");
+      const work_motion = document.querySelector(".work-motion");
+      const gallary = document.querySelector(".gallary");
+      const spread = document.querySelector(".spread");
+
+      const hero_height = hero ? hero?.clientHeight - 500 : 0;
+      const work_height = work ? hero_height + work?.clientHeight : 0;
+      const work_motion_height = work_motion
+        ? work_height + work_motion?.clientHeight
+        : 0;
+      const gallary_height =
+        gallary && spread
+          ? work_motion_height + gallary?.clientHeight + spread?.clientHeight
+          : 0;
+          
+      if (navOpen) {
+        setIsMobile(true);
         setNavColor("#fff");
-      } else if (window.scrollY <= window.innerHeight * 5.4) {
-        setNavColor("#000");
-      } else if (window.scrollY <= window.innerHeight * 8.34) {
-        setNavColor("#fff");
-      } else if (window.scrollY <= window.innerHeight * 10.817) {
-        setNavColor("#000");
       } else {
-        setNavColor("#e0ccbb");
+        if (window.innerWidth >= 750) {
+          setIsMobile(window.scrollY >= 20);
+        }
+        if (window.scrollY <= hero_height) {
+          setNavColor("#fff");
+        } else if (window.scrollY <= work_height) {
+          setNavColor("#000");
+        } else if (window.scrollY <= work_motion_height) {
+          setNavColor("#fff");
+        } else if (window.scrollY <= gallary_height) {
+          setNavColor("#000");
+        } else {
+          setNavColor("#e0ccbb");
+        }
+      }
+    } else if (window.location.pathname === "/contact") {
+      const contact = document.querySelector(".contact");
+      const contact_height = contact
+        ? contact?.clientHeight - 0.05 * window.innerWidth
+        : 0;
+      if (navOpen) {
+        setIsMobile(true);
+        setNavColor("#fff");
+      } else {
+        if (window.innerWidth >= 750) {
+          setIsMobile(window.scrollY >= 20);
+        }
+        if (window.scrollY <= contact_height) {
+          setNavColor("#000");
+        } else {
+          setNavColor("#e0ccbb");
+        }
+      }
+    }
+    if (window.location.pathname === "/studio") {
+      const hero = document.querySelector(".studio .studio_hero");
+      const partners = document.querySelector(".studio .partners");
+      const how = document.querySelector(".studio .how");
+      const what_we_believe = document.querySelector(
+        ".studio .what-we-believe"
+      );
+      const the_ape = document.querySelector(".studio .the-ape");
+      const recognition = document.querySelector(".studio .recognition");
+
+      const hero_height = hero
+        ? hero?.clientHeight - 0.05 * window.innerWidth
+        : 0;
+
+      const partners_height = partners
+        ? hero_height + partners.clientHeight
+        : 0;
+      const how_height = how ? partners_height + how?.clientHeight : 0;
+      const what_height = what_we_believe
+        ? how_height + what_we_believe?.clientHeight
+        : 0;
+      const the_ape_height = the_ape ? what_height + the_ape?.clientHeight : 0;
+      const recognition_height = recognition
+        ? the_ape_height + recognition?.clientHeight
+        : 0;
+      
+      if (navOpen) {
+        setIsMobile(true);
+        setNavColor("#fff");
+      } else {
+        if (window.innerWidth >= 750) {
+          setIsMobile(window.scrollY >= 20);
+        }
+        if (window.scrollY <= hero_height) {
+          setNavColor("#fff");
+        } else if (window.scrollY <= partners_height) {
+          setNavColor("#000");
+        } else if (window.scrollY <= how_height) {
+          setNavColor("#fff");
+        } else if (window.scrollY <= what_height) {
+          setNavColor("#000");
+        } else if (window.scrollY <= the_ape_height) {
+          setNavColor("#fff");
+        } else if (window.scrollY <= recognition_height) {
+          setNavColor("#000");
+        } else {
+          setNavColor("#e0ccbb");
+        }
       }
     }
   };
+
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 750);
     setSettingVisible(window.innerWidth <= 750);
@@ -56,7 +146,6 @@ const Nav = ({ color }: { color?: string }) => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
   return (
     <div className={`fixed flex w-full items-start z-50 top-0 right-0`}>
       <nav
@@ -162,13 +251,13 @@ const Nav = ({ color }: { color?: string }) => {
             animate={{ scale: 1, height: "100vh" }}
           >
             {!settingVisible && (
-              <div className="overflow-hidden w-[21vw] h-[70vh]">
+              <div className="overflow-hidden w-[21vw] h-[31vw]">
                 <AnimatePresence>
                   {number === 1 && (
                     <motion.img
                       src="./images/black-women.webp"
                       alt=""
-                      className="w-[21vw] h-[70vh] object-cover"
+                      className="w-[21vw] h-[31vw] object-cover"
                       transition={{ ease: "easeIn", duration: 0.8 }}
                       initial={{ rotate: "20deg", scale: 1.2 }}
                       animate={{ rotate: "0deg", scale: 1 }}
@@ -180,7 +269,7 @@ const Nav = ({ color }: { color?: string }) => {
                     <motion.img
                       src="./images/computer.webp"
                       alt=""
-                      className="w-[21vw] h-[70vh] object-cover "
+                      className="w-[21vw] h-[31vw] object-cover "
                       transition={{ ease: "easeIn", duration: 0.5 }}
                       initial={{ rotate: "20deg", scale: 1.2 }}
                       animate={{ rotate: "0deg", scale: 1 }}
@@ -192,7 +281,7 @@ const Nav = ({ color }: { color?: string }) => {
                     <motion.img
                       src="./images/awwwards annual nominee.webp"
                       alt=""
-                      className="w-[21vw] h-[70vh] object-cover"
+                      className="w-[21vw] h-[31vw] object-cover"
                       transition={{ ease: "easeIn", duration: 0.8 }}
                       initial={{ rotate: "20deg", scale: 1.2 }}
                       animate={{ rotate: "0deg", scale: 1 }}
@@ -204,7 +293,7 @@ const Nav = ({ color }: { color?: string }) => {
                     <motion.img
                       src="./images/man-using-computer.webp"
                       alt=""
-                      className="w-[21vw] h-[70vh] object-cover"
+                      className="w-[21vw] h-[31vw] object-cover"
                       transition={{ ease: "easeIn", duration: 0.8 }}
                       initial={{ rotate: "20deg", scale: 1.2 }}
                       animate={{ rotate: "0deg", scale: 1 }}

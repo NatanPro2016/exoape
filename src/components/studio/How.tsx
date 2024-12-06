@@ -5,7 +5,7 @@ import useIsMobile from "../../hook/useIsMobile";
 const How = () => {
   const isMobile = useIsMobile();
   return (
-    <motion.div className="bg-dark-blue fle flex-col px-[8vw] py-[12vw] text-light-gray z-10">
+    <motion.div className="bg-dark-blue flex-col px-[8vw] py-[12vw] text-light-gray z-10 how">
       <span className="flex gap-[0.8vw] items-center md:text-[0.996vw] text-[3.7vw]">
         <svg
           viewBox="0 0 12 12"
@@ -17,7 +17,7 @@ const How = () => {
             d="M7.41908 4.56679L6.13722 0L4.85418 4.92566L0 6L4.85418 7.25435L6.13722 12L7.3276 7.25435L12 6L7.41908 4.56679Z"
             fill="#fff"
           ></path>
-        </svg>
+        </svg> 
         How we work
       </span>
       <h1 className="md:text-[2.2vw] text-[6.4vw] md:leading-[3vw] leading-[7vw] mt-[7vw] md:w-[42vw]">
@@ -31,7 +31,7 @@ const How = () => {
             <h1 className="md:text-[3.7vw] text-[7.3vw] text-light-gray md:leading-[4vw] leading-[8vw] tracking-[-0.1vw]">
               Elevating sophistication across all senses
             </h1>
-            <p className="md:mt-[2vw] mt-[4vw] flex flex-col">
+            <div className="md:mt-[2vw] mt-[4vw] flex flex-col">
               {!isMobile ? (
                 <>
                   <p>We ensure that the high standards and </p>
@@ -54,7 +54,7 @@ const How = () => {
                   existing ecosystem.
                 </p>
               )}
-            </p>
+            </div>
           </div>
         </div>
         <div className="flex md:items-center md:text-[1.1vw] text-[3.7vw] text-light-gray-08 md:w-[33vw] pr-[10vw] md:gap-[2vw] gap-[10vw] mt-[18vw] ">
@@ -63,7 +63,7 @@ const How = () => {
             <h1 className="md:text-[3.7vw] text-[7.3vw] text-light-gray md:leading-[4vw] leading-[8vw] tracking-[-0.1vw]">
               To be human is our greatest quality
             </h1>
-            <p className="md:mt-[2vw] mt-[4vw] flex flex-col">
+            <div className="md:mt-[2vw] mt-[4vw] flex flex-col">
               {!isMobile ? (
                 <>
                   <p>We believe that intuition is the most</p>
@@ -90,7 +90,7 @@ const How = () => {
                   touch people on a deeper level.
                 </p>
               )}
-            </p>
+            </div>
           </div>
         </div>
       </div>
@@ -136,7 +136,7 @@ const How = () => {
             <h1 className="md:text-[3.7vw] text-[7.3vw] text-light-gray md:leading-[4vw] leading-[8vw] tracking-[-0.1vw]">
               Simplicity is the dot on our horizon
             </h1>
-            <p className="md:mt-[2vw] mt-[4vw] flex flex-col">
+            <div className="md:mt-[2vw] mt-[4vw] flex flex-col">
               {isMobile ? (
                 <p>
                   In today's world, we have become information-rich and
@@ -160,7 +160,7 @@ const How = () => {
                   <p>frivolous.</p>
                 </>
               )}
-            </p>
+            </div>
           </div>
         </div>
         <div className="flex md:items-center md:text-[1.1vw] text-[3.7vw] text-light-gray-08 md:w-[33vw] pr-[10vw] md:gap-[2vw] gap-[10vw] mt-[18vw] ">
@@ -169,7 +169,7 @@ const How = () => {
             <h1 className="md:text-[3.7vw] text-[7.3vw] text-light-gray md:leading-[4vw] leading-[8vw] tracking-[-0.1vw]">
               Uncompromising standard of excellence
             </h1>
-            <p className="md:mt-[2vw] mt-[4vw] flex flex-col">
+            <div className="md:mt-[2vw] mt-[4vw] flex flex-col">
               {!isMobile ? (
                 <>
                   <p>We aim to push boundaries and</p>
@@ -195,7 +195,7 @@ const How = () => {
                   earth but reaching for the stars
                 </p>
               )}
-            </p>
+            </div>
           </div>
         </div>
       </div>
