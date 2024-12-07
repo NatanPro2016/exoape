@@ -312,7 +312,7 @@ const Nav = ({ color }: { color?: string }) => {
                 <UpAnimtion
                   content="Home"
                   className={`md:text-[3.6vw] text-[16vw] ${
-                    !isMobile && "hover-line"
+                    !settingVisible && "hover-line"
                   }`}
                 />
               </a>
@@ -323,7 +323,7 @@ const Nav = ({ color }: { color?: string }) => {
               >
                 <UpAnimtion
                   content="Work"
-                  className={isMobile ? "" : "hover-line"}
+                  className={settingVisible ? "" : "hover-line"}
                 />
               </a>
               <a
@@ -333,7 +333,7 @@ const Nav = ({ color }: { color?: string }) => {
               >
                 <UpAnimtion
                   content="Studio"
-                  className={isMobile ? " " : "hover-line"}
+                  className={settingVisible ? " " : "hover-line"}
                 />
               </a>
               <a
@@ -343,7 +343,7 @@ const Nav = ({ color }: { color?: string }) => {
               >
                 <UpAnimtion
                   content="Contact"
-                  className={isMobile ? "" : "hover-line"}
+                  className={settingVisible ? "" : "hover-line"}
                 />
               </a>
               {!settingVisible && (
