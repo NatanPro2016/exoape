@@ -64,9 +64,7 @@ const Nav = ({ color }: { color?: string }) => {
       }
     } else if (window.location.pathname === "/contact") {
       const contact = document.querySelector(".contact");
-      const contact_height = contact
-        ? contact?.clientHeight - 0.05 * window.innerWidth
-        : 0;
+      const contact_height = contact ? contact?.clientHeight  : 0;
       if (navOpen) {
         setIsMobile(true);
         setNavColor("#fff");

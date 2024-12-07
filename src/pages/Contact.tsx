@@ -16,6 +16,7 @@ const Contact = () => {
   const [loading, setLoading] = useState(true);
 
   const isMobile = useIsMobile();
+  const contaner = useRef(null);
 
   useEffect(() => {
     const lenis = new Lenis();
@@ -62,7 +63,7 @@ const Contact = () => {
   }, []);
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: contaner,
     offset: ["end start", "end end"],
   });
   const y = useTransform(scrollYProgress, [0, 1], ["0vh", "30vw"]);
@@ -87,7 +88,10 @@ const Contact = () => {
                 animate={{ scale: 1, marginTop: "0vw" }}
                 className="origin-left"
               >
-                <div className="flex flex-col md:flex-row min-h-screen md:items-end px-[10vw] pb-[2.8vw] relative z-20 bg-white md:pt-0 pt-[14vw] ">
+                <div
+                  className="flex flex-col md:flex-row min-h-screen md:items-end px-[10vw] pb-[2.8vw] relative z-20 bg-white md:pt-0 pt-[14vw] "
+                  ref={contaner}
+                >
                   <div className="flex w-screen overflow-hidden absolute top-[7vw] left-0 z-0">
                     <div className="md:text-[10vw] text-[26vw] flex flex-nowrap animate gap-[2vw] whitespace-nowrap md:mt-[2vw] mt-[24vw]">
                       <p className="w-fit inline-block ">
@@ -165,7 +169,7 @@ const Contact = () => {
                     </a>
                   </div>
                 </div>
-                <motion.div className="md:h-[200vh] h-[100vh] md:mt-[-100vh] mt-[-50vh] z-10 relative md:block flex items-end">
+                <motion.div className="md:h-[200vh] h-[100vh] md:mt-[-100vh] mt-[-50vw] z-10 relative md:block flex items-end">
                   <motion.div
                     className="sticky top-0 bottom-0 left-0"
                     style={{ y }}
