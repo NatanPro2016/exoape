@@ -42,7 +42,7 @@ const Nav = ({ color }: { color?: string }) => {
         gallary && spread
           ? work_motion_height + gallary?.clientHeight + spread?.clientHeight
           : 0;
-          
+
       if (navOpen) {
         setIsMobile(true);
         setNavColor("#fff");
@@ -106,7 +106,7 @@ const Nav = ({ color }: { color?: string }) => {
       const recognition_height = recognition
         ? the_ape_height + recognition?.clientHeight
         : 0;
-      
+
       if (navOpen) {
         setIsMobile(true);
         setNavColor("#fff");
@@ -311,7 +311,9 @@ const Nav = ({ color }: { color?: string }) => {
               >
                 <UpAnimtion
                   content="Home"
-                  className="md:text-[3.6vw] text-[16vw] hover-line"
+                  className={`md:text-[3.6vw] text-[16vw] ${
+                    !isMobile && "hover-line"
+                  }`}
                 />
               </a>
               <a
@@ -319,21 +321,30 @@ const Nav = ({ color }: { color?: string }) => {
                 className="flex overflow-hidden h-[18vw] cursor-pointer md:h-[5vw]"
                 onMouseEnter={() => setNumber(1)}
               >
-                <UpAnimtion content="Work" className=" hover-line" />
+                <UpAnimtion
+                  content="Work"
+                  className={isMobile ? "" : "hover-line"}
+                />
               </a>
               <a
                 href="/studio"
                 className="flex overflow-hidden h-[18vw] md:h-[5vw]"
                 onMouseEnter={() => setNumber(2)}
               >
-                <UpAnimtion content="Studio" className=" hover-line" />
+                <UpAnimtion
+                  content="Studio"
+                  className={isMobile ? " " : "hover-line"}
+                />
               </a>
               <a
                 href="/contact"
                 className="flex overflow-hidden h-[18vw] hover-line md:h-[5vw]"
                 onMouseEnter={() => setNumber(4)}
               >
-                <UpAnimtion content="Contact" className="hover-line" />
+                <UpAnimtion
+                  content="Contact"
+                  className={isMobile ? "" : "hover-line"}
+                />
               </a>
               {!settingVisible && (
                 <ul className="flex flex-col mt-[2vw] text-sand-6 text-[1.2vw]">
