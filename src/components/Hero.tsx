@@ -24,10 +24,10 @@ const Hero = () => {
     target: ref,
     offset: ["start start", "center center"],
   });
-    const opacity_scroll = useScroll({
-      target: ref,
-      offset: ["center start", "center center"],
-    });
+  const opacity_scroll = useScroll({
+    target: ref,
+    offset: ["center start", "center center"],
+  });
   const top_scroll = useScroll({
     target: ref,
     offset: ["center center", "end end"],
@@ -79,11 +79,11 @@ const Hero = () => {
         )}
       </AnimatePresence>
       {isMobile ? (
-        <div className=" h-[300vh] w-screen">
-          <div className="sticky top-0 w-screen overflow-x-hidden">
+        <div className=" h-[200vh] w-screen">
+          <div className="sticky top-0 w-screen h-screen overflow-hidden">
             <motion.img
               src="/images/Venice Grand Canal.webp"
-              alt=""  
+              alt=""
               className="h-screen w-screen object-cover object-center"
               style={{ scale }}
             />

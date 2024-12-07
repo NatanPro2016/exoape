@@ -20,7 +20,7 @@ const Partners = () => {
     [0, 1],
     ["8vw", "-30vw"]
   );
-  const img_2 = useTransform(scroll_1.scrollYProgress, [0, 1], ["0vw", "20vw"]);
+  const img_2 = useTransform(scroll_1.scrollYProgress, [0, 1], ["-20vw", "20vw"]);
 
   return (
     <div className="bg-white pb-[15vw] h-fit partners">
