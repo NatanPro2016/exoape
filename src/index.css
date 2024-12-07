@@ -124,7 +124,6 @@ body {
 
 .line {
   position: relative;
-
 }
 .line::after {
   content: "";
@@ -134,4 +133,10 @@ body {
   height: 0.3%;
   width: 105%;
   background: #1515159d;
+}
+.h-screen {
+  height: 100svh;
+}
+.w-screen {
+  width: 100svw;
 }

@@ -11,7 +11,7 @@ const Spread = () => {
   return (
     <div className="relative md:min-h-screen z-10 mb-[8vh] spread">
       <motion.div
-        className="flex flex-col relatve items-center py-[10vw] bg-white"
+        className="flex flex-col relatve items-center py-[10vw]"
         style={{ y }}
       >
         <span className="flex gap-1 w-fit h-[1vh] items-center md:text-[0.996vw] text-[1.8vw]">

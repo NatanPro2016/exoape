@@ -42,6 +42,12 @@ const Hero = () => {
     ["0vh", "-20vh"]
   );
   const opacity = useTransform(marginTopScroll.scrollYProgress, [0, 1], [1, 0]);
+  const reverse_opacity = useTransform(
+    marginTopScroll.scrollYProgress,
+    [0, 1],
+    [0, 1]
+  );
+
   return (
     <div
       ref={ref}
@@ -63,9 +69,9 @@ const Hero = () => {
       </AnimatePresence>
 
       {isMobile ? (
-        <div className="relative w-screen h-[300vh]">
-          <div className="sticky top-0">
-            <div className="w-screen overflow-x-hidden absolute top-0 left-0 ">
+        <div className="relative w-screen h-[200vh]">
+          <div className="sticky w-screen h-screen top-0">
+            <div className="w-screen h-screen overflow-hidden absolute top-0 left-0 ">
               <motion.img
                 src="/images/studio/exo ape-10.webp"
                 alt=""
@@ -74,9 +80,12 @@ const Hero = () => {
               />
             </div>
 
-            <div className="absolute top-0 left-0 h-full w-full bg-black z-10"></div>
+            <motion.div
+              className="absolute top-0 left-0 h-full w-full bg-[#00000059] z-10"
+              style={{ opacity: reverse_opacity }}
+            ></motion.div>
 
-            <motion.div className="px-[7vw] pr-[14vw] pt-[6vw] h-[90vw] absolute top-0 mt-[21vw]">
+            <motion.div className="px-[7vw] pr-[14vw] pt-[6vw] h-[90vw] absolute top-0 mt-[21vw] z-40">
               <h1 className="pt-[5vh] text-[15vw] font-Lausanne text-white flex flex-col relative">
                 <div className="h-[28vw] flex overflow-hidden">
                   <motion.div style={{ marginTop, opacity }}>
