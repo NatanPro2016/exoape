@@ -81,9 +81,9 @@ const Work = () => {
         <div className="w-full md:w-[18vw] md:mt-[50vh]">
           <ImageVideo
             image="/images/Studio D.webp"
-            video="/video/file-2.mp4"
-            title="camblum"
-            description="camblum"
+            video="/video/file.mp4"
+            title="Studio D"
+            description="Urban and Landscape Design"
             link="https://cambiumcarbon.com/"
           />
         </div>
