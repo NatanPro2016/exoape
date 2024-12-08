@@ -134,9 +134,3 @@ body {
   width: 105%;
   background: #1515159d;
 }
-.h-screen {
-  height: 100svh;
-}
-.w-screen {
-  width: 100svw;
-}
